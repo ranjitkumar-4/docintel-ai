@@ -1,0 +1,58 @@
+# Environment and Secrets
+.env
+*.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+env/
+venv/
+ENV/
+
+# Chroma DB and Local Storage
+chroma_db/
+**/chroma_db/
+*.db
+*.sqlite
+*.sqlite3
+documents/*
+!documents/.gitkeep
+data/*
+!data/.gitkeep
+uploads/
+
+# Node / Frontend
+node_modules/
+**/node_modules/
+dist/
+build/
+.vercel/
+frontend/node_modules/
+frontend/dist/
+*.log
+
+# Caches and temporary files
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+__pycache__/
+*.py[cod]
+*.tmp
+*.temp
+*.swp
+*.bak
+*.pid
+logs/
+htmlcov/
+.coverage
+
+# OS
+.DS_Store
+Thumbs.db

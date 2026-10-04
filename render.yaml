@@ -1,0 +1,35 @@
+services:
+  - type: web
+    name: docintel-ai-api
+    runtime: python
+    plan: starter
+    region: singapore
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    disk:
+      name: docintel-ai-data
+      mountPath: /var/data
+      sizeGB: 1
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.17
+      - key: APP_ENV
+        value: production
+      - key: ALLOW_DESTRUCTIVE_RESET
+        value: "false"
+      - key: LLM_PROVIDER
+        value: local
+      - key: EMBEDDING_PROVIDER
+        value: local
+      - key: EMBEDDING_MODEL
+        value: local-hash-v1
+      - key: CHROMA_PERSIST_DIR
+        value: /var/data/chroma_db
+      - key: UPLOAD_DIR
+        value: /var/data/documents
+      - key: DATA_DIR
+        value: /var/data/data
+      - key: CORS_ORIGINS
+        sync: false

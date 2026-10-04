@@ -189,7 +189,7 @@ Deploy the frontend to Vercel and the FastAPI backend to a persistent Python hos
 1. Push this repository to GitHub and create a Render Blueprint from it. Render reads `render.yaml`; the service root is `backend`, and the persistent disk is mounted at `/var/data`.
 2. The Blueprint uses the paid `starter` service plan because Render's free web services do not provide a persistent disk. Keep one backend instance: the local Chroma and JSON storage do not support concurrent replicas.
 3. After deployment, confirm `https://<render-service>.onrender.com/health` responds successfully. The service uses the local answer and embedding providers by default; optional external API keys are not required.
-4. `backend/apt.txt` requests the Tesseract system package for the Render Python build. Confirm `/api/health` reports OCR available after deployment; if the host build does not install the package, image uploads must report OCR unavailable rather than claim OCR success.
+4. The repository-root `apt.txt` requests the Tesseract system package for Render's Linux build; the Blueprint build command runs `tesseract --version` so deployment fails if it is unavailable. The existing `backend/apt.txt` is retained as well. Confirm `/api/health` reports OCR available after deployment.
 
 ### Vercel frontend
 
